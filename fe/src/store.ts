@@ -31,6 +31,7 @@ export class Store {
   setToken(token?: string) {
     this.token = token;
     axios.defaults.headers.common = {
+      ...axios.defaults.headers.common,
       Authorization: `Bearer ${this.token}`,
     };
     if (this.token) {

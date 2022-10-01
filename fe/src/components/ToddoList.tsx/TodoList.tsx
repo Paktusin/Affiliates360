@@ -47,7 +47,7 @@ export const TodoList = observer(() => {
       setLoading(false);
       setDeleteTodo(null);
     });
-  }, []);
+  }, [projectId]);
   const done = useCallback((todo: Todo) => {
     axios
       .get(`/api/todo/${todo.id}/done`, { params: { done: !todo.done } })

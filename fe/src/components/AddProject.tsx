@@ -28,7 +28,7 @@ export const AddProject: React.FC<AddProjectProps> = ({
         onFinish();
         setLoading(false);
       });
-  }, []);
+  }, [form, onFinish, project]);
 
   useEffect(() => {
     if (project) {

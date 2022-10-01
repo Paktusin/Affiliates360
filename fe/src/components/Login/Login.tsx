@@ -7,14 +7,16 @@ import { store } from "../../store";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const onSubmit = useCallback((values: any) => {
-    axios.post("/api/login", values).then((res) => {
-      store.token = res.data.token;
-      store.user = res.data.user;
-      localStorage.setItem("key", store.token!);
-      navigate("/");
-    });
-  }, [navigate]);
+  const onSubmit = useCallback(
+    (values: any) => {
+      axios.post("/api/login", values).then((res) => {
+        store.setToken(res.data.token);
+        localStorage.setItem("key", store.token!);
+        navigate("/");
+      });
+    },
+    [navigate]
+  );
 
   return (
     <div className={styles.login}>

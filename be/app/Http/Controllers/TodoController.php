@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -25,7 +26,12 @@ class TodoController extends Controller
 
     function find($id)
     {
-        return Todo::find($id);
+        $todo = Todo::find($id);
+        $user = User::find($todo->user_id);
+        if ($user) {
+            $todo->userName = $user->name;
+        }
+        return $todo;
     }
 
 

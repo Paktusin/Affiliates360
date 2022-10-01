@@ -6,15 +6,12 @@
 }
 
 .card {
-  cursor: pointer;
-  display: -webkit-box;
-  max-width: 200px;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  .content {
+    cursor: pointer;
+  }
 }
 
-.header{
+.header {
   display: flex;
   align-items: center;
 }

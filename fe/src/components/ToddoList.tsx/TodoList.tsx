@@ -3,8 +3,9 @@ import {
   CheckCircleOutlined,
   DeleteOutlined,
   EyeOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
-import { Button, Card, Popover, Space } from "antd";
+import { Button, Card, Col, Popover, Row, Space } from "antd";
 import axios from "axios";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useState } from "react";
@@ -63,45 +64,50 @@ export const TodoList = observer(() => {
   const todos = store.todos;
   return (
     <div className={styles.todoList}>
-      {todos.map((todo, key) => (
-        <Card
-          key={key}
-          title={
-            <div className={styles.header}>
-              <Space size={8}>
-                <EyeOutlined /> {todo.viewed}
-              </Space>
-              <div style={{ marginLeft: "auto" }}>
-                <Popover content={getStatus(todo.done)}>
-                  <Button
-                    onClick={() => done(todo)}
-                    type="text"
-                    icon={
-                      todo.done ? (
-                        <CheckCircleFilled style={{ color: "green" }} />
-                      ) : (
-                        <CheckCircleOutlined />
-                      )
-                    }
-                  />
-                </Popover>
-                <Button
-                  onClick={() => setDeleteTodo(todo)}
-                  type="text"
-                  icon={<DeleteOutlined />}
-                />
+      <Row style={{ width: "100%" }}>
+        {todos.map((todo, key) => (
+          <Col span={24} md={12} lg={8} xl={6} style={{ padding: 8 }}>
+            <Card
+              className={styles.card}
+              key={key}
+              title={
+                <div className={styles.header}>
+                  <Space size={8}>
+                    <EyeOutlined /> {todo.viewed}
+                  </Space>
+                  <div style={{ marginLeft: "auto" }}>
+                    <Popover content={getStatus(todo.done)}>
+                      <Button
+                        onClick={() => done(todo)}
+                        type="text"
+                        icon={
+                          todo.done ? (
+                            <CheckCircleFilled style={{ color: "green" }} />
+                          ) : (
+                            <CheckCircleOutlined />
+                          )
+                        }
+                      />
+                    </Popover>
+                    <Button
+                      onClick={() => setDeleteTodo(todo)}
+                      type="text"
+                      icon={<DeleteOutlined />}
+                    />
+                  </div>
+                </div>
+              }
+            >
+              <div
+                onClick={() => navigate(todo.id!.toString())}
+                className={styles.content}
+              >
+                {todo.description.slice(0, 100) + "..."}
               </div>
-            </div>
-          }
-        >
-          <div
-            onClick={() => navigate(todo.id!.toString())}
-            className={styles.card}
-          >
-            {todo.description}
-          </div>
-        </Card>
-      ))}
+            </Card>
+          </Col>
+        ))}
+      </Row>
       <Modal
         confirmLoading={loading}
         onOk={() => onDelete(deleteTodo!)}
@@ -111,6 +117,12 @@ export const TodoList = observer(() => {
         {t("deleteWarning")}
       </Modal>
       <Modal
+        title={
+          <Space size={8}>
+            <UserOutlined />
+            {viewTodo?.userName}
+          </Space>
+        }
         footer={null}
         visible={!!viewTodo}
         onCancel={() => navigate(`/${projectPath}/${projectId}/todo`)}

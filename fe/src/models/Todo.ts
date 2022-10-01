@@ -7,6 +7,7 @@ export interface Todo {
   viewed: number;
   project_id: number;
   user_id: number;
+  userName?: string;
 }
 
 export function getStatus(done: boolean) {

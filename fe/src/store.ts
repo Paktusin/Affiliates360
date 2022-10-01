@@ -1,7 +1,7 @@
 import axios from "axios";
 import { action, makeObservable, observable } from "mobx";
 import { Project } from "./models/Project";
-import { Todo } from "./models/Project copy";
+import { Todo } from "./models/Todo";
 import { User } from "./models/User";
 
 export class Store {
@@ -48,8 +48,8 @@ export class Store {
     );
   }
 
-  refreshTodos() {
-    axios.get("/api/todo").then(
+  refreshTodos(project_id?: string) {
+    axios.get("/api/todo", { params: { project_id } }).then(
       action((res) => {
         this.todos.replace(res.data);
       })

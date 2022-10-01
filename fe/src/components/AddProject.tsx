@@ -1,8 +1,10 @@
-import { Form, Input, Modal, ModalProps, Typography } from "antd";
+import { Form, Input, ModalProps, Typography } from "antd";
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
+import { t } from "../i18n";
 import { Project } from "../models/Project";
 import { store } from "../store";
+import { Modal } from "./Modal";
 
 export interface AddProjectProps extends Omit<ModalProps, "visible"> {
   project?: Project;
@@ -42,9 +44,9 @@ export const AddProject: React.FC<AddProjectProps> = ({
       visible={!!project}
       {...props}
     >
-      <Typography>create project</Typography>
-      <Form form={form} onFinish={onSave}>
-        <Form.Item name="name" label="Name">
+      <Typography.Title level={4}>{t("createProject")}</Typography.Title>
+      <Form layout="vertical" form={form} onFinish={onSave}>
+        <Form.Item name="name" label={t("name")}>
           <Input />
         </Form.Item>
       </Form>

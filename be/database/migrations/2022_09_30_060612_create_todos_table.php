@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->boolean('done')->default(false);
             $table->string('description');
-            $table->unsignedInteger('viewed');
+            $table->unsignedInteger('viewed')->default(0);
             $table->unsignedInteger('project_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();

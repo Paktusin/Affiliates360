@@ -13,7 +13,6 @@ class ProjectController extends Controller
             'id' => 'number',
             'name' => 'string|required'
         ]);
-        error_log(implode("", $fields));
         $newProject = Project::create($fields);
         return $newProject;
     }
@@ -21,5 +20,10 @@ class ProjectController extends Controller
     function list(Request $request)
     {
         return Project::all();
+    }
+
+    function delete($id)
+    {
+        return Project::destroy($id);
     }
 }

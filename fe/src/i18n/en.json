@@ -1,5 +1,19 @@
 {
   "addProject": "Add Project",
   "addTodo": "Add Todo",
-  "logout": "Logout"
+  "logout": "Logout",
+  "ok": "Ok",
+  "cancel": "Cancel",
+  "createTodo": "Create todo",
+  "name": "Name",
+  "description": "Description",
+  "views": "Views",
+  "done": "Done",
+  "user": "User",
+  "createProject": "Create project",
+  "newProject": "New Project",
+  "project": "Project",
+  "deleteWarning": "Do you realy want to delete this Todo?",
+  "status_false": "Todo",
+  "status_true": "Done"
 }

@@ -1,7 +1,6 @@
 import {
   FileAddOutlined,
   GlobalOutlined,
-  PlusCircleOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Menu, Space } from "antd";
@@ -15,6 +14,7 @@ import { supportedLanguages, t } from "../../i18n";
 import { Project } from "../../models/Project";
 import { store } from "../../store";
 import { AddProject } from "../AddProject";
+import { AddTodo } from "../AddTodo";
 import { projectParam } from "../ProjectList/ProjectList";
 
 export const TopNav = observer(() => {
@@ -31,12 +31,7 @@ export const TopNav = observer(() => {
   const el = useRoutes([
     {
       path: `/${projectPath}/:${projectParam}/todo`,
-      element: (
-        <Space>
-          <PlusCircleOutlined />
-          {t("addTodo")}
-        </Space>
-      ),
+      element: <AddTodo />,
     },
   ]);
   const menuItems = useMemo(() => {
@@ -72,7 +67,7 @@ export const TopNav = observer(() => {
         ),
       },
       {
-        onClick: () => setProject({ name: "new project" }),
+        onClick: () => setProject({ name: t("newProject") }),
         label: (
           <Space size={8}>
             <FileAddOutlined />
@@ -86,7 +81,7 @@ export const TopNav = observer(() => {
       res.push({ label: el, key: "add_todo" });
     }
     return res;
-  }, [el, logout]);
+  }, [changeLang, el, logout]);
   return (
     <>
       <Menu

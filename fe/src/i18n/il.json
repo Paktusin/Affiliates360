@@ -1,5 +1,19 @@
 {
-    "addProject": "הוסף פרויקט",
-    "addTodo": "הוסף Todo",
-    "logout": "להתנתק"
-  }
+  "addProject": "הוסף פרויקט",
+  "addTodo": "הוסף לעשות",
+  "logout": "להתנתק",
+  "createTodo": "צור מטלות",
+  "ok": "בסדר",
+  "cancel": "לְבַטֵל",
+  "name": "שֵׁם",
+  "description": "תיאור",
+  "views": "צפיות",
+  "done": "בוצע",
+  "user": "מִשׁתַמֵשׁ",
+  "createProject": "צור פרויקט",
+  "project": "פּרוֹיֶקט",
+  "newProject": "פרוייקט חדש",
+  "deleteWarning": "האם אתה באמת רוצה למחוק את הטודו הזה?",
+  "status_false": "לעשות",
+  "status_true": "בוצע"
+}

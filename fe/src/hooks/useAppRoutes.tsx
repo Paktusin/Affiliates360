@@ -6,7 +6,7 @@ import {
   ProjectList,
   projectParam,
 } from "../components/ProjectList/ProjectList";
-import { TodoList } from "../components/ToddoList.tsx/TodoList";
+import { TodoList, todoParam } from "../components/ToddoList.tsx/TodoList";
 import { store } from "../store";
 
 const loginPath = "login";
@@ -20,7 +20,10 @@ const protectedRoutes = [
       {
         path: projectPath,
         element: <ProjectList />,
-        children: [{ path: `:${projectParam}/todo`, element: <TodoList /> }],
+        children: [
+          { path: `:${projectParam}/todo`, element: <TodoList /> },
+          { path: `:${projectParam}/todo/:${todoParam}`, element: <TodoList  /> }
+        ],
       },
       { path: "", element: <Navigate to={`/${projectPath}`} /> },
     ],

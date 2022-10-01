@@ -33,7 +33,7 @@ class AuthController extends Controller
 
         $user = User::where('email', $fileds['email'])->first();
 
-        if (!$user || !Hash::check($fileds['password'], $user->password_hash)) {
+        if (!$user || !Hash::check($fileds['password'], $user->password)) {
             return response(['message' => 'invaalid creds!'], 401);
         }
 

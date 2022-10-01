@@ -1,7 +1,7 @@
 import i18n, { t as tBase } from "i18next";
 import { initReactI18next } from "react-i18next";
 
-const supportedLanguages = new Map<string, string>([
+export const supportedLanguages = new Map<string, string>([
   ["he-IL", "il"],
   ["en-US", "en"],
 ]);

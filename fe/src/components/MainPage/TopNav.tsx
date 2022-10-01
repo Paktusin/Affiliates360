@@ -1,15 +1,17 @@
 import {
   FileAddOutlined,
+  GlobalOutlined,
   PlusCircleOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Menu, Space, Typography } from "antd";
+import { Menu, Space } from "antd";
 import { ItemType } from "antd/lib/menu/hooks/useItems";
+import i18next from "i18next";
 import { observer } from "mobx-react-lite";
 import React, { useCallback, useMemo, useState } from "react";
 import { useNavigate, useRoutes } from "react-router-dom";
 import { projectPath } from "../../hooks/useAppRoutes";
-import { t } from "../../i18n";
+import { supportedLanguages, t } from "../../i18n";
 import { Project } from "../../models/Project";
 import { store } from "../../store";
 import { AddProject } from "../AddProject";
@@ -17,6 +19,10 @@ import { projectParam } from "../ProjectList/ProjectList";
 
 export const TopNav = observer(() => {
   const navigate = useNavigate();
+  const changeLang = useCallback((lang: string) => {
+    localStorage.setItem("lang", lang);
+    window.location.reload();
+  }, []);
   const logout = useCallback(() => {
     store.setToken();
     navigate("/login");
@@ -52,6 +58,20 @@ export const TopNav = observer(() => {
         ),
       },
       {
+        children: Array.from(supportedLanguages.values()).map((lang) => ({
+          key: "lang_" + lang,
+          label: lang,
+          onClick: () => changeLang(lang),
+        })),
+        key: "lang",
+        label: (
+          <Space size={8}>
+            <GlobalOutlined />
+            {i18next.language}
+          </Space>
+        ),
+      },
+      {
         onClick: () => setProject({ name: "new project" }),
         label: (
           <Space size={8}>
@@ -66,7 +86,7 @@ export const TopNav = observer(() => {
       res.push({ label: el, key: "add_todo" });
     }
     return res;
-  }, [el, store.user]);
+  }, [el, logout]);
   return (
     <>
       <Menu

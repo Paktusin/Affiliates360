@@ -14,7 +14,7 @@ export const Login = () => {
       localStorage.setItem("key", store.token!);
       navigate("/");
     });
-  }, []);
+  }, [navigate]);
 
   return (
     <div className={styles.login}>

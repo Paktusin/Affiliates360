@@ -81,7 +81,7 @@ export const TopNav = observer(() => {
       res.push({ label: el, key: "add_todo" });
     }
     return res;
-  }, [changeLang, el, logout]);
+  }, [changeLang, el, logout, store.user]);
   return (
     <>
       <Menu

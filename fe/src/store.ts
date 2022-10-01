@@ -39,6 +39,7 @@ export class Store {
       axios.get("/api/user").then((res) => (this.user = res.data));
     } else {
       localStorage.removeItem("key");
+      this.user = undefined;
     }
   }
 
